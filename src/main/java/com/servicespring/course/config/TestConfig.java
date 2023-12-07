@@ -1,9 +1,6 @@
 package com.servicespring.course.config;
 
-import com.servicespring.course.entities.Category;
-import com.servicespring.course.entities.Order;
-import com.servicespring.course.entities.Product;
-import com.servicespring.course.entities.User;
+import com.servicespring.course.entities.*;
 import com.servicespring.course.entities.enums.OrderStatus;
 import com.servicespring.course.entities.pk.OrderItem;
 import com.servicespring.course.repositories.*;
@@ -69,5 +66,10 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+        o1.setPayment(pay1);
+
+        orderRepository.save(o1);
     }
 }
